@@ -13,10 +13,10 @@ TestClass::~TestClass()
 
 void TestClass::PrintInt(int x, int y)
 {
-	std::cout << "Print integer "<< x << " : " << y;
+	std::cout << "Print integer "<< x << " : " << y << std::endl;
 }
 
 void TestClass::PrintFloat(float x, float y)
 {
-	std::cout << "Print float " << x << " : " << y;
+	std::cout << "Print float " << x << " : " << y << std::endl;
 }
