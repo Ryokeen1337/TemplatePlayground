@@ -22,10 +22,10 @@ void TestCall(ClassType& tClass, ParamType1 x, ParamType2 y)
 
 int main()
 {
-    TestClass* tClass = new TestClass();
+    ITestClass* tClass = new TestClass();
 
-    TestTemplate<TestClass, decltype(TestClass::PrintFloat),float, float> testT;
-    testT.TestCall(*tClass, &TestClass::PrintFloat , 1, 3);
+    TestTemplate<ITestClass, decltype(ITestClass::PrintFloat),float, float> testT;
+    testT.TestCall(*tClass, &ITestClass::PrintFloat , 1, 3);
 
-    TestCall<int, int, TestClass, &TestClass::PrintInt>(*tClass, 1, 3);
+    TestCall<int, int, ITestClass, &ITestClass::PrintInt>(*tClass, 1, 3);
 }
