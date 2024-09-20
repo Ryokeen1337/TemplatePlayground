@@ -11,12 +11,12 @@ TestClass::~TestClass()
 
 }
 
-void TestClass::PrintInt(int x, int y)
+void TestClass::PrintInt(int x, int y) const
 {
 	std::cout << "Print integer "<< x << " : " << y << std::endl;
 }
 
-void TestClass::PrintFloat(float x, float y)
+void TestClass::PrintFloat(float x, float y) const
 {
 	std::cout << "Print float " << x << " : " << y << std::endl;
 }

@@ -5,7 +5,7 @@ template<typename ClassType,typename FuncType, typename ParamType1, typename Par
 class TestTemplate
 {
 public:
-    typedef void (ClassType::* FunctionToCall)(ParamType1 x, ParamType2 y);  // Please do this!
+    typedef void (ClassType::* FunctionToCall)(ParamType1 x, ParamType2 y) const;  // Please do this!
 
     void TestCall(ClassType& tClass, FuncType f, ParamType1 x, ParamType2 y)
     {
@@ -14,7 +14,7 @@ public:
     }
 };
 
-template<typename ParamType1, typename ParamType2, typename ClassType, void (ClassType::* FunctionToCall)(ParamType1, ParamType2)>
+template<typename ParamType1, typename ParamType2, typename ClassType, void (ClassType::* FunctionToCall)(ParamType1, ParamType2)const>
 void TestCall(ClassType& tClass, ParamType1 x, ParamType2 y)
 {
     ((tClass).*(FunctionToCall))(x, y);
