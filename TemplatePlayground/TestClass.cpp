@@ -17,6 +17,12 @@ int TestClass::AddInt(int x, int y) const
 	return x+y;
 }
 
+int TestClass::SubInt( int x, int y ) const
+{
+	std::cout << "Print integer and sub  " << x << " - " << y << " = " << ( x - y ) << std::endl;
+	return x + y;
+}
+
 std::unique_ptr<int> TestClass::ReturnUniquePtr(int x, int y) const
 {
 	std::cout << "ReturnUniquePtr<int>" << "(" << x + y << ")" << std::endl;
