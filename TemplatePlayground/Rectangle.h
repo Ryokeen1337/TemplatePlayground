@@ -23,6 +23,7 @@ class Rectangle
 {
 public:
 	Rectangle();
+	Rectangle(int x, int y);
 	~Rectangle();
 
 	void SetDimensionY(const int value) const;
@@ -30,6 +31,6 @@ public:
 
 	int GetArea() const;
 private:
-	Dimension* _dimensionX;
-	Dimension* _dimensionY;
+	std::unique_ptr<Dimension> _dimensionX;
+	std::unique_ptr<Dimension> _dimensionY;
 };

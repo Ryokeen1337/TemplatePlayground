@@ -3,14 +3,18 @@
 
 Rectangle::Rectangle()
 {
-    _dimensionX = new Dimension();
-    _dimensionY = new Dimension();
+    _dimensionX = std::make_unique<Dimension>();
+    _dimensionY = std::make_unique<Dimension>();
+}
+
+Rectangle::Rectangle(int x, int y) : Rectangle()
+{
+    SetDimensionX(x);
+    SetDimensionY(y);
 }
 
 Rectangle::~Rectangle()
 {
-    delete _dimensionX;
-    delete _dimensionY;
 }
 
 int Rectangle::GetArea() const

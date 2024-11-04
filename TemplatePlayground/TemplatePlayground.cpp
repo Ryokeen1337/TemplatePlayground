@@ -74,21 +74,21 @@ void TestCall(ClassType& tClass, ParamType1 x, ParamType2 y )
     ((tClass).*(FunctionToCall))(x, y);
 }
 
-int main()
+void TestTemplates()
 {
     std::unique_ptr<ITestClass> tClass = std::make_unique<TestClass>();
 
     std::cout << "-------TestTemplate1-------" << std::endl;
-    TestTemplate1<ITestClass, void, decltype(&ITestClass::PrintInt),int, int> test1;
-    test1.TestCall(*tClass, &ITestClass::PrintInt, 1, 3);
+    TestTemplate1<ITestClass, void, decltype( &ITestClass::PrintInt ), int, int> test1;
+    test1.TestCall( *tClass, &ITestClass::PrintInt, 1, 3 );
 
-    TestTemplate1<ITestClass, int, decltype(&ITestClass::AddInt), int, int> test2;
-    test2.TestCall(*tClass, &ITestClass::AddInt, 1, 3);
+    TestTemplate1<ITestClass, int, decltype( &ITestClass::AddInt ), int, int> test2;
+    test2.TestCall( *tClass, &ITestClass::AddInt, 1, 3 );
 
-    TestTemplate1<ITestClass, std::unique_ptr<int>, decltype(ITestClass::ReturnUniquePtr), int, int> test3;
-    test3.TestCall(*tClass, &ITestClass::ReturnUniquePtr, 1, 3);
+    TestTemplate1<ITestClass, std::unique_ptr<int>, decltype( ITestClass::ReturnUniquePtr ), int, int> test3;
+    test3.TestCall( *tClass, &ITestClass::ReturnUniquePtr, 1, 3 );
 
-    TestTemplate1<ITestClass, void, decltype(&ITestClass::PrintFloat), float, float> test4;
+    TestTemplate1<ITestClass, void, decltype( &ITestClass::PrintFloat ), float, float> test4;
     test4.TestCall( *tClass, &ITestClass::PrintFloat, 1.0f, 3.0f );
 
     std::cout << "-------TestTemplate2-------" << std::endl;
@@ -111,14 +111,26 @@ int main()
     test8.TestCall<int, &ITestClass::SubInt>( *tClass, 1, 3 );
 
     std::cout << "-------TestCall Template-------" << std::endl;
-    TestCall<int, int, ITestClass, void, &ITestClass::PrintInt>(*tClass, 1, 3);
+    TestCall<int, int, ITestClass, void, &ITestClass::PrintInt>( *tClass, 1, 3 );
+}
 
-    Rectangle rect;
-
-    rect.SetDimensionX(2);
-    rect.SetDimensionY(3);
+void TestConst()
+{
+    Rectangle rect{2,3};
 
     int area = rect.GetArea();
 
     std::cout << "-------Area: " << area << " -------" << std::endl;
+
+    //call to const method
+    rect.SetDimensionY( 4 );
+    area = rect.GetArea();
+
+    std::cout << "-------Area: " << area << " -------" << std::endl;
+}
+
+int main()
+{
+    //TestTemplates();
+    TestConst();
 }
