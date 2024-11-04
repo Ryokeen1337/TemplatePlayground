@@ -21,9 +21,15 @@
     <ClCompile Include="TestClass.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestClass.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TestClass.h"
+#include "Rectangle.h"
 
 //Long readable version
 template<typename ClassType, typename RetType,typename FuncType, typename ParamType1, typename ParamType2>
@@ -54,6 +55,18 @@ public:
     }
 };
 
+//Version without decltype
+template<typename ClassType, typename ParamType1, typename ParamType2>
+class TestTemplate5
+{
+public:
+    template<typename RetType, RetType( ClassType::* FunctionToCall )( ParamType1, ParamType2 ) const>
+    void TestCall( ClassType& tClass, ParamType1 x, ParamType2 y ) const
+    {
+        ( ( tClass ).*( FunctionToCall ) )( x, y );
+    }
+};
+
 template<typename ParamType1, typename ParamType2, typename ClassType, typename RetType,
     RetType( ClassType::* FunctionToCall )( ParamType1, ParamType2 ) const >
 void TestCall(ClassType& tClass, ParamType1 x, ParamType2 y )
@@ -92,6 +105,20 @@ int main()
     test7.TestCall<decltype( &ITestClass::AddInt )>( *tClass, &ITestClass::AddInt, 1, 3 );
     test7.TestCall<decltype( &ITestClass::SubInt )>( *tClass, &ITestClass::SubInt, 1, 3 );
 
+    std::cout << "-------TestTemplate5-------" << std::endl;
+    TestTemplate5<ITestClass, int, int> test8;
+    test8.TestCall<int, &ITestClass::AddInt>( *tClass, 1, 3 );
+    test8.TestCall<int, &ITestClass::SubInt>( *tClass, 1, 3 );
+
     std::cout << "-------TestCall Template-------" << std::endl;
     TestCall<int, int, ITestClass, void, &ITestClass::PrintInt>(*tClass, 1, 3);
+
+    Rectangle rect;
+
+    rect.SetDimensionX(2);
+    rect.SetDimensionY(3);
+
+    int area = rect.GetArea();
+
+    std::cout << "-------Area: " << area << " -------" << std::endl;
 }
